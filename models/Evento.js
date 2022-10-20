@@ -1,12 +1,13 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const EventoSchema = mongoose.Schema({
+const EventoSchema = Schema({
+
     title: {
         type: String,
         required: true
     },
     notes: {
-        type: String
+        type: String,        
     },
     start: {
         type: Date,
@@ -17,10 +18,11 @@ const EventoSchema = mongoose.Schema({
         required: true
     },
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Usuario',
         required: true
     }
+
 });
 
 EventoSchema.method('toJSON', function() {
@@ -29,4 +31,7 @@ EventoSchema.method('toJSON', function() {
     return object;
 });
 
-module.exports = mongoose.model('Evento', EventoSchema);
+
+
+module.exports = model('Evento', EventoSchema );
+
